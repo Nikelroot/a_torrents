@@ -1,0 +1,22 @@
+services:
+  qbittorrent:
+    image: linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    ports:
+      - 9999:9999
+      - 47194:47194
+      - 47194:47194/udp
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - WEBUI_PORT=9999
+      - NODE_ENV=production
+      - TZ=Asia/Yekaterinburg
+    # networks:
+    # plab:
+    volumes:
+      - ./qData:/config
+      - /mnt/D/From:/downloads
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
