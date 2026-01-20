@@ -12,11 +12,20 @@ services:
       - WEBUI_PORT=9999
       - NODE_ENV=production
       - TZ=Asia/Yekaterinburg
-    # networks:
-    # plab:
+    networks:
+      abook: {}
+      main:
+        ipv4_address: 192.168.28.15
+        # mac_address: 92:42:3b:df:3b:24
     volumes:
       - ./qData:/config
-      - /mnt/D/From:/downloads
+      - /mnt/E/downloads:/downloads
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
+
+networks:
+  main:
+    external: true
+  abook:
+    external: true
